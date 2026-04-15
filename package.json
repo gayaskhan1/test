@@ -1,0 +1,10 @@
+{
+  "name": "test-app",
+  "version": "1.0.0",
+  "description": "DevOps pipeline demo app",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "dependencies": {}
+}
