@@ -29,8 +29,7 @@ pipeline {
                     sonar-scanner \
                     -Dsonar.projectKey=test-app \
                     -Dsonar.sources=. \
-                    -Dsonar.host.url=http://sonarqube:9000 \
-                    -Dsonar.login=$SONAR_AUTH_TOKEN
+                    -Dsonar.host.url=http://localhost:9000 \
                     '''
                 }
             }
@@ -50,15 +49,11 @@ pipeline {
             }
         }
 
-        stage('Trivy Security Scan') {
-            steps {
-                sh '''
-                docker run --rm \
-                -v /var/run/docker.sock:/var/run/docker.sock \
-                aquasec/trivy image test-app
-                '''
-            }
-        }
+     stage('Trivy Security Scan') {
+    steps {
+        sh 'trivy image test-app'
+    }
+}
 
         stage('Push to DockerHub') {
             steps {
